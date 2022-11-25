@@ -7,6 +7,4 @@ nvidia-ml-py3
 ftfy
 gradio==3.4.1
 git+https://github.com/huggingface/diffusers.git
-https://github.com/metrolobo/xformers_wheels/releases/download/1d31a3ac_various_6/xformers-0.0.14.dev0-cp37-cp37m-linux_x86_64.whl; python_version = '3.7'
-https://github.com/apolinario/xformers/releases/download/0.0.3/xformers-0.0.14.dev0-cp38-cp38-linux_x86_64.whl; python_version = '3.8'
-git+https://github.com/facebookresearch/xformers.git@main#egg=xformers; python_version > '3.8'
+git+https://github.com/facebookresearch/xformers.git@main#egg=xformers
