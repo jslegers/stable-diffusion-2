@@ -7,4 +7,3 @@ nvidia-ml-py3
 ftfy
 gradio==3.4.1
 git+https://github.com/huggingface/diffusers.git
-git+https://github.com/facebookresearch/xformers.git@main#egg=xformers
