@@ -26,6 +26,8 @@ if device == "cuda":
         torch_dtype=torch.float16,
         scheduler=scheduler
     )
+    pipe.to(device)
+    pipe.enable_xformers_memory_efficient_attention()
 else:
     print('No Nvidia GPU in system!')
     share = False
@@ -34,9 +36,8 @@ else:
         use_auth_token=AUTH_TOKEN,
         scheduler=scheduler
     )
-
-pipe.to(device)
-pipe.enable_xformers_memory_efficient_attention()
+    pipe.to(device)
+    
 pipe.safety_checker = dummy
 #torch.backends.cudnn.benchmark = True
 
