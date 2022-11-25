@@ -3,9 +3,6 @@ import torch
 import os
 from diffusers import DiffusionPipeline, EulerDiscreteScheduler
 
-def dummy(images, **kwargs):
-    return images, False
-
 model_id = "stabilityai/stable-diffusion-2"
 scheduler = EulerDiscreteScheduler.from_pretrained(model_id, subfolder="scheduler", prediction_type="v_prediction")
 
@@ -38,7 +35,7 @@ else:
     )
     pipe.to(device)
     
-pipe.safety_checker = dummy
+pipe.safety_checker = None
 #torch.backends.cudnn.benchmark = True
 
 def infer(prompt="", samples=4, steps=20, scale=7.5, seed=1437181781):
