@@ -5,4 +5,4 @@ transformers
 nvidia-ml-py3
 ftfy
 gradio==3.4.1
-git+https://github.com/huggingface/diffusers.git@30f6f44
+git+https://github.com/huggingface/diffusers.git
