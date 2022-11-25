@@ -19,7 +19,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 if device == "cuda":
     print('Nvidia GPU detected!')
     share = True
-    pipe = StableDiffusionPipeline.from_pretrained(
+    pipe = DiffusionPipeline.from_pretrained(
         model_id,
         use_auth_token=AUTH_TOKEN,
         revision="fp16",
@@ -29,7 +29,7 @@ if device == "cuda":
 else:
     print('No Nvidia GPU in system!')
     share = False
-    pipe = StableDiffusionPipeline.from_pretrained(
+    pipe = DiffusionPipeline.from_pretrained(
         model_id,
         use_auth_token=AUTH_TOKEN,
         scheduler=scheduler
