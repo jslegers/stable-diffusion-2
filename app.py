@@ -1,12 +1,13 @@
 import gradio as gr
 import torch
 import os
-from diffusers import StableDiffusionPipeline
+from diffusers import DiffusionPipeline, EulerDiscreteScheduler
 
 def dummy(images, **kwargs):
     return images, False
 
 model_id = "stabilityai/stable-diffusion-2"
+scheduler = EulerDiscreteScheduler.from_pretrained(model_id, subfolder="scheduler", prediction_type="v_prediction")
 
 AUTH_TOKEN = os.environ.get('AUTH_TOKEN')
 if not AUTH_TOKEN:
@@ -22,17 +23,20 @@ if device == "cuda":
         model_id,
         use_auth_token=AUTH_TOKEN,
         revision="fp16",
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        scheduler=scheduler
     )
 else:
     print('No Nvidia GPU in system!')
     share = False
     pipe = StableDiffusionPipeline.from_pretrained(
         model_id,
-        use_auth_token=AUTH_TOKEN
+        use_auth_token=AUTH_TOKEN,
+        scheduler=scheduler
     )
 
 pipe.to(device)
+pipe.enable_xformers_memory_efficient_attention()
 pipe.safety_checker = dummy
 #torch.backends.cudnn.benchmark = True
 
